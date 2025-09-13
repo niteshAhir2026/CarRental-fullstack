@@ -14,6 +14,7 @@ import ManageBookings from './pages/owner/ManageBookings'
 import Login from './components/Login'
 import { Toaster } from 'react-hot-toast'
 import { useAppContext } from './context/AppContext'
+import CarFeedbacks from './pages/CarFeedbacks'
 
 const App = () => {
 
@@ -32,6 +33,7 @@ const App = () => {
       <Route path='/car-details/:id' element={<CarDetails/>}/>
       <Route path='/cars' element={<Cars/>}/>
       <Route path='/my-bookings' element={<MyBookings/>}/>
+      <Route path='/car-feedbacks' element={<CarFeedbacks/>}/>
       <Route path='/owner' element={<Layout />}>
         <Route index element={<Dashboard />}/>
         <Route path="add-car" element={<AddCar />}/>

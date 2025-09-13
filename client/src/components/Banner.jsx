@@ -15,6 +15,16 @@ const Banner = () => {
             <p className='mt-2'>Monetize your vehicle effortlessly by listing it on CarRental.</p>
             <p className='max-w-130'>We take care of insurance, driver verification and secure payments — so you can earn passive income, stress-free.</p>
 
+            <div className='mt-6 mb-2'>
+              <label htmlFor="pickup-location" className="block mb-1 font-semibold">Pickup Location</label>
+              <select id="pickup-location" className="text-gray-700 rounded-lg px-4 py-2 w-full max-w-xs">
+                <option value="koderma">Koderma</option>
+                <option value="ranchi">Ranchi</option>
+                <option value="jamshedpur">Jamshedpur</option>
+                <option value="bokaro">Bokaro</option>
+              </select>
+            </div>
+
             <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -25,7 +35,7 @@ const Banner = () => {
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        src={assets.banner_car_image} alt="car" className='max-h-45 mt-10'/>
+        src={'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1152&q=80'} alt="car" className='max-h-45 mt-10'/>
       
     </motion.div>
   )

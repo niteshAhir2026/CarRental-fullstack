@@ -72,11 +72,31 @@ export const AppProvider = ({ children })=>{
         }
     },[token])
 
-    const value = {
-        navigate, currency, axios, user, setUser,
-        token, setToken, isOwner, setIsOwner, fetchUser, showLogin, setShowLogin, logout, fetchCars, cars, setCars, 
-        pickupDate, setPickupDate, returnDate, setReturnDate
-    }
+
+        // Function to fetch feedback for a car
+        const fetchFeedback = async (carId) => {
+            try {
+                const { data } = await axios.get(`/api/feedbacks/${carId}`);
+                return data.success ? data.feedbacks : [];
+            } catch (error) {
+                toast.error(error.message);
+                return [];
+            }
+        };
+
+    // Function to submit feedback
+    const submitFeedback = async ({ bookingId, rating, comment }) => {
+      await axios.post('/api/feedbacks', { bookingId, rating, comment });
+      await fetchCars(); // Refresh cars with updated feedbackCount
+      toast.success('Feedback added successfully!');
+    };
+
+        const value = {
+                navigate, currency, axios, user, setUser,
+                token, setToken, isOwner, setIsOwner, fetchUser, showLogin, setShowLogin, logout, fetchCars, cars, setCars, 
+                pickupDate, setPickupDate, returnDate, setReturnDate,
+                fetchFeedback, submitFeedback
+        }
 
     return (
     <AppContext.Provider value={value}>
@@ -85,6 +105,6 @@ export const AppProvider = ({ children })=>{
     )
 }
 
-export const useAppContext = ()=>{
-    return useContext(AppContext)
-}
+export const useAppContext = () => useContext(AppContext);
+
+export default AppProvider;
